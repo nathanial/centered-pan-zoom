@@ -26,9 +26,10 @@ CenteredPanZoom.prototype.zoom = function(scale, center){
     x: center.x / this.width,
     y: center.y / this.height
   };
+  console.log("percentage", percentage);
   this.translate = {
-    x: this.translate.x - deltaWidth * percentage.x,
-    y: this.translate.y - deltaHeight * percentage.y
+    x: (this.translate.x + deltaWidth / 2) - deltaWidth * percentage.x,
+    y: (this.translate.y + deltaHeight / 2) - deltaHeight * percentage.y
   };
   this.scale = scale;
 };
