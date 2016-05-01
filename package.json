@@ -1,0 +1,23 @@
+{
+  "name": "centered-pan-zoom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./src/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanial/centered-pan-zoom.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nathanial/centered-pan-zoom/issues"
+  },
+  "homepage": "https://github.com/nathanial/centered-pan-zoom#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
