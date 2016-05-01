@@ -15,4 +15,23 @@ CenteredPanZoom.prototype.pan = function(options){
   };
 };
 
+CenteredPanZoom.prototype.zoom = function(scale, center){
+  var oldWidth = this.scale * this.width;
+  var oldHeight = this.scale * this.height;
+  var newWidth = scale * this.width;
+  var newHeight = scale * this.height;
+  var deltaWidth = (newWidth - oldWidth);
+  var deltaHeight = (newHeight - oldHeight);
+  var actualCenter = {x: 0.5, y: 0.5};
+  var percentage = {
+    x: center.x / this.width,
+    y: center.y / this.height
+  };
+  this.translate = {
+    x: this.translate.x - deltaWidth * percentage.x,
+    y: this.translate.y - deltaWidth * percentage.y
+  };
+  this.scale = scale;
+};
+
 module.exports = CenteredPanZoom;

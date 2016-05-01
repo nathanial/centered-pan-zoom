@@ -57,7 +57,7 @@ describe('PanZoom', function() {
 
   describe("#zoom() to x2", function(){
     it("should zoom in top-left corner", function(){
-      var panner = CenteredPanZoom({width: 100, height: 100});
+      var panner = new CenteredPanZoom({width: 100, height: 100});
       panner.zoom(2.0, {x: 50, y: 50})
       assert.deepEqual({x:-50, y:-50}, panner.translate);
       assert.deepEqual(2, panner.scale);
