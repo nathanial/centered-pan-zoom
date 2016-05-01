@@ -55,4 +55,11 @@ describe('PanZoom', function() {
     });
   })
 
+  describe("#zoom() to x2", function(){
+
+  });
+
+  describe("#zoom() to x0.5", function(){
+
+  });
 });
