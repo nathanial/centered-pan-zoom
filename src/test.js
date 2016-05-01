@@ -56,15 +56,49 @@ describe('PanZoom', function() {
   })
 
   describe("#zoom() to x2", function(){
-    it("should zoom in top-left corner", function(){
+    it("should zoom in center", function(){
       var panner = new CenteredPanZoom({width: 100, height: 100});
       panner.zoom(2.0, {x: 50, y: 50})
       assert.deepEqual({x:-50, y:-50}, panner.translate);
       assert.deepEqual(2, panner.scale);
     });
+    it("should zoom in top-left", function(){
+      var panner = new CenteredPanZoom({width: 100, height: 100});
+      panner.zoom(2.0, {x:0, y:0});
+      assert.deepEqual({x: 0, y: 0}, panner.translate);
+      assert.deepEqual(2, panner.scale);
+    });
+    it("should zoom in bottom-right", function(){
+      var panner = new CenteredPanZoom({width: 100, height: 100});
+      panner.zoom(2.0, {x:100, y:100});
+      assert.deepEqual({x: -100, y: -100}, panner.translate);
+      assert.deepEqual(2, panner.scale);
+    });
+    it("should zoom multiple times, in center", function(){
+      var panner = new CenteredPanZoom({width: 100, height: 100});
+      panner.zoom(2.0, {x: 50, y: 50});
+      panner.zoom(4.0, {x: 50, y: 50});
+      assert.deepEqual({x: -150, y: -150}, panner.translate);
+      assert.deepEqual(4, panner.scale);
+    });
+    it("should zoom and pan", function(){
+      var panner = new CenteredPanZoom({width: 100, height: 100});
+
+      panner.zoom(2.0, {x: 0, y:0});
+      assert.deepEqual({x: 0, y: 0}, panner.translate);
+      assert.deepEqual(2, panner.scale);
+
+      panner.pan({start: {x: 0, y: 0}, end: {x:100, y: 100}});
+      assert.deepEqual({x: 100, y: 100}, panner.translate);
+      assert.deepEqual(2, panner.scale);
+
+      panner.zoom(4.0, {x: 50, y:50});
+      assert.deepEqual({x: 0, y: 0}, panner.translate);
+      assert.deepEqual(4, panner.scale);
+    })
   });
 
-  describe("#zoom() to x0.5", function(){
-
-  });
+  // describe("#zoom() to x0.5", function(){
+  //
+  // });
 });
