@@ -16,21 +16,9 @@ CenteredPanZoom.prototype.pan = function(options){
 };
 
 CenteredPanZoom.prototype.zoom = function(scale, center){
-  var oldWidth = this.scale * this.width;
-  var oldHeight = this.scale * this.height;
-  var newWidth = scale * this.width;
-  var newHeight = scale * this.height;
-  var deltaWidth = (newWidth - oldWidth);
-  var deltaHeight = (newHeight - oldHeight);
-
-  var offsetX = this.translate.x / (this.width * this.scale);
-  var offsetY = this.translate.y / (this.height * this.scale);
-
-  var cx = center.x / this.width - offsetX;
-  var cy = center.y / this.height - offsetY;
   this.translate = {
-    x: (this.translate.x + deltaWidth / 2) - deltaWidth * cx,
-    y: (this.translate.y + deltaHeight / 2) - deltaHeight * cy
+    x: (this.translate.x * (scale/this.scale)),
+    y: (this.translate.y * (scale/this.scale))
   };
   this.scale = scale;
 };
