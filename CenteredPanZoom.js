@@ -22,14 +22,15 @@ CenteredPanZoom.prototype.zoom = function(scale, center){
   var newHeight = scale * this.height;
   var deltaWidth = (newWidth - oldWidth);
   var deltaHeight = (newHeight - oldHeight);
-  var percentage = {
-    x: center.x / this.width,
-    y: center.y / this.height
-  };
-  console.log("percentage", percentage);
+
+  var offsetX = this.translate.x / (this.width * this.scale);
+  var offsetY = this.translate.y / (this.height * this.scale);
+
+  var cx = center.x / this.width - offsetX;
+  var cy = center.y / this.height - offsetY;
   this.translate = {
-    x: (this.translate.x + deltaWidth / 2) - deltaWidth * percentage.x,
-    y: (this.translate.y + deltaHeight / 2) - deltaHeight * percentage.y
+    x: (this.translate.x + deltaWidth / 2) - deltaWidth * cx,
+    y: (this.translate.y + deltaHeight / 2) - deltaHeight * cy
   };
   this.scale = scale;
 };
